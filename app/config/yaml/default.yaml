@@ -1,0 +1,5 @@
+fst:
+  app:
+    title: Name projects
+  logging:
+    level: INFO
