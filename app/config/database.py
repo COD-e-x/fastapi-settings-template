@@ -2,9 +2,9 @@ from pydantic import BaseModel, SecretStr
 
 
 class DatabaseConfig(BaseModel):
-    db_database: str
-    db_user: str
-    db_password: SecretStr
-    db_host: str
-    db_port: int
-    db_echo: bool = False
+    database: str
+    user: str
+    password: SecretStr
+    host: str
+    port: int
+    echo: bool = False
