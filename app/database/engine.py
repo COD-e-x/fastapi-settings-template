@@ -3,7 +3,7 @@ from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, Asyn
 from app.config.settings import settings
 
 engine = create_async_engine(
-    url=settings.database.async_url,
+    url=settings.database.asyncpg_url,
     echo=settings.database.sqla.echo,
     connect_args = {"server_settings": {"timezone": "UTC"}},
 )
