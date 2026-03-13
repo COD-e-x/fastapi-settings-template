@@ -18,13 +18,7 @@ class DatabaseConfig(BaseModel):
     sqla: SQLAlchemyConfig = SQLAlchemyConfig()
 
     @property
-    def asyncpg_url(self) -> URL:
-        return URL.create(
-            drivername="postgresql+asyncpg",
-            username=self.username,
-            password=self.password.get_secret_value(),
-            host=self.host,
-            port=self.port,
-            database=self.database,
+    def asyncpg_url(self) -> str:
+        return (f"postgresql+asyncpg://{self.username}:{self.password.get_secret_value()}"
+                f"@{self.host}:{self.port}/{self.database}")
 
-        )
