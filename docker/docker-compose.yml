@@ -1,0 +1,35 @@
+name: fst
+
+services:
+  db:
+    image: postgres:17-alpine
+    container_name: fst_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: fst
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 3s
+      retries: 3
+
+  app:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: fst_app
+    ports:
+      - "8000:8000"
+    env_file:
+      - ../app/config/envs/.env.example
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
