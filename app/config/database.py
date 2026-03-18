@@ -1,5 +1,4 @@
 from pydantic import BaseModel, SecretStr
-from sqlalchemy import URL
 
 
 class SQLAlchemyConfig(BaseModel):
@@ -21,4 +20,3 @@ class DatabaseConfig(BaseModel):
     def asyncpg_url(self) -> str:
         return (f"postgresql+asyncpg://{self.username}:{self.password.get_secret_value()}"
                 f"@{self.host}:{self.port}/{self.database}")
-
