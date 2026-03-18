@@ -33,7 +33,7 @@ class Settings(BaseSettings):
         )
     )
     app: AppConfig
-    logging: LoggingConfig
+    logging: LoggingConfig = LoggingConfig()
     database: DatabaseConfig
     http: HttpConfig = HttpConfig()
 

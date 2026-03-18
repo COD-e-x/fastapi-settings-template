@@ -16,3 +16,9 @@ class LoggingConfig(BaseModel):
     @property
     def log_level(self) -> int:
         return getattr(logging, self.level)
+
+    def setup(self) -> None:
+        logging.basicConfig(
+            level=self.log_level,
+            format=self.format,
+        )

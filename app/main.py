@@ -3,14 +3,12 @@ import logging
 from fastapi import FastAPI
 from app.config.settings import settings
 
+logger = logging.getLogger(__name__)
+settings.logging.setup()
 
-logging.basicConfig(
-    level=settings.logging.log_level,
-)
+app = FastAPI(title=settings.app.title)
 
-app = FastAPI(
-    title=settings.app.title,
-)
+logger.info("Server started")
 
 # DB connection test endpoint
 
