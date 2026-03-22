@@ -8,7 +8,7 @@ def main():
         "app.main:app",
         host=settings.app.host,
         port=settings.app.port,
-        reload=True,
+        # reload=True,
     )
 
 
